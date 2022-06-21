@@ -1,0 +1,265 @@
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom/cjs/react-router-dom.min.js";
+import { getActors } from "../Actors.js/ActorManager.js";
+import { getDirectors } from "../Directors/DirectorManagers.js";
+import { getGenres } from "../Genres/GenreManager.js";
+import { updateMovie, getSingleMovie, removeMovie } from "./MovieManager.js";
+
+export const UpdateMovieForm = () => {
+  const history = useHistory();
+  const [directors, setDirectors] = useState([]);
+  const [actors, setActors] = useState([]);
+  const { movieId } = useParams();
+
+  /*
+        Since the input fields are bound to the values of
+        the properties of this state variable, you need to
+        provide some default values.
+    */
+  const [movie, setMovie] = useState({});
+
+  useEffect(() => {
+    getSingleMovie(movieId).then((data) => {
+      setMovie(data);
+    });
+  }, [movieId]);
+
+  useEffect(() => {
+    getDirectors().then((data) => {
+      setDirectors(data);
+    });
+  }, []);
+
+  useEffect(() => {
+    getActors().then((data) => {
+      setActors(data);
+    });
+  }, []);
+
+  const deleteMovie = () => {
+    removeMovie(movieId);
+  };
+
+  const saveMovie = (evt) => {
+    evt.preventDefault();
+
+    const newMovie = {
+      name: movie.name,
+      director: parseInt(movie.director?.id),
+      release_date: movie.release_date,
+      run_time: parseInt(movie.run_time),
+      filming_location: movie.filming_location,
+      synopsis: movie.synopsis,
+      trailer: movie.trailer,
+      poster: movie.poster,
+      actor: parseInt(movie.actor?.id),
+    };
+
+    updateMovie(newMovie, movieId).then(history.push(`/decades`));
+  };
+
+  return (
+    <>
+      <form className="movieForm">
+        <h2 className="movieForm__title">Register New Movie</h2>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="name">Name: </label>
+            <input
+              type="text"
+              name="name"
+              value={movie.name}
+              required
+              autoFocus
+              className="form-control"
+              onChange={(evt) => {
+                const copy = { ...movie };
+                copy.name = evt.target.value;
+                setMovie(copy);
+              }}
+            />
+          </div>
+        </fieldset>
+        <div>
+          <select
+            required
+            autoFocus
+            className="directorBar"
+            onChange={(evt) => {
+              const copy = { ...movie };
+              copy.director = parseInt(evt.target.value);
+              setMovie(copy);
+            }}
+          >
+            <option className="directorBar" value="0">
+              Choose a Director
+            </option>
+            {directors.map((director) => {
+              return (
+                <option className="directorBar" value={movie.director?.id}>
+                  {director.first_name} {director.last_name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="release_date">Release Date: </label>
+            <input
+              type="date"
+              name="release_date"
+              value={movie.release_date}
+              required
+              autoFocus
+              className="form-control"
+              onChange={(evt) => {
+                const copy = { ...movie };
+                copy.release_date = evt.target.value;
+                setMovie(copy);
+              }}
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="run_time">Run Time: </label>
+            <input
+              type="number"
+              name="run_time"
+              value={movie.run_time}
+              required
+              autoFocus
+              className="form-control"
+              onChange={(evt) => {
+                const copy = { ...movie };
+                copy.run_time = parseInt(evt.target.value);
+                setMovie(copy);
+              }}
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="filming_location">Filming Location: </label>
+            <input
+              type="text"
+              name="filming_location"
+              value={movie.filming_location}
+              required
+              autoFocus
+              className="form-control"
+              onChange={(evt) => {
+                const copy = { ...movie };
+                copy.filming_location = evt.target.value;
+                setMovie(copy);
+              }}
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="synopsis">Synopsis: </label>
+            <input
+              type="text"
+              name="synopsis"
+              value={movie.synopsis}
+              required
+              autoFocus
+              className="form-control"
+              onChange={(evt) => {
+                const copy = { ...movie };
+                copy.director = parseInt(evt.target.value);
+                setMovie((evt) => {
+                  const copy = { ...movie };
+                  copy.synopsis = evt.target.value;
+                  setMovie(copy);
+                });
+              }}
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="trailer">Trailer: </label>
+            <input
+              type="text"
+              name="trailer"
+              value={movie.trailer}
+              required
+              autoFocus
+              className="form-control"
+              onChange={(evt) => {
+                const copy = { ...movie };
+                copy.trailer = evt.target.value;
+                setMovie(copy);
+              }}
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <div className="form-group">
+            <label htmlFor="poster">Poster: </label>
+            <input
+              type="text"
+              name="poster"
+              value={movie.poster}
+              required
+              autoFocus
+              className="form-control"
+              onChange={(evt) => {
+                const copy = { ...movie };
+                copy.poster = evt.target.value;
+                setMovie(copy);
+              }}
+            />
+          </div>
+        </fieldset>
+        <div>
+          <select
+            required
+            autoFocus
+            className="actorBar"
+            onChange={(evt) => {
+              const copy = { ...movie };
+              copy.actor = parseInt(evt.target.value);
+              setMovie(copy);
+            }}
+          >
+            <option className="actorBar" value="0">
+              Choose Actors
+            </option>
+            {actors.map((actor) => {
+              return (
+                <option className="actorBar" value={movie.actor?.id}>
+                  {actor.first_name} {actor.last_name}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+
+        <button
+          type="submit"
+          onClick={saveMovie}
+          // Send POST request to your API
+
+          className="btn btn-primary"
+        >
+          Save
+        </button>
+
+        <button
+          type="submit"
+          onClick={deleteMovie}
+          // Send POST request to your API
+
+          className="btn btn-primary"
+        >
+          Delete
+        </button>
+      </form>
+    </>
+  );
+};

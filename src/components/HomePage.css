@@ -1,0 +1,15 @@
+.editor_pick_box {
+    border: 1px solid black;
+    width: 620px;
+    height: 310px;
+    margin: 10px;
+}
+
+.movie_synopsis {
+    display: flex;
+    justify-self: flex-end;
+    border: 1px solid black;
+    width: fill;
+    height: fill;
+    margin-left: 10px;
+}
