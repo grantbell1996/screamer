@@ -4,6 +4,7 @@ import { getActors } from "../Actors.js/ActorManager.js"
 import { getDirectors } from "../Directors/DirectorManagers.js"
 import { getGenres } from "../Genres/GenreManager.js"
 import { createMovie, getMovies } from './MovieManager.js'
+import "./MovieForm.css"
 
 
 export const MovieForm = () => {
@@ -26,7 +27,6 @@ export const MovieForm = () => {
         synopsis: "",
         user: 0,
         trailer: "",
-        genre: "",
         poster: "",
         actor: ""
     })
@@ -62,8 +62,8 @@ export const MovieForm = () => {
 
     return (
         <> 
-        <form className="movieForm">
-            <h2 className="movieForm__title">Register New Movie</h2>
+        <form className="movie_form">
+            <h2 className="movie_form__title">Register New Movie</h2>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="name">Name: </label>
@@ -140,28 +140,6 @@ export const MovieForm = () => {
                     />
                 </div>
             </fieldset>
-            <div>
-                <select
-                            required autoFocus
-                            className="genreBar"
-                        onChange={
-                            (evt) => {
-                                const copy = {...movie}
-                                copy.genre = parseInt(evt.target.value)
-                                setMovie(copy)
-                            }
-                        }>
-                            <option className="directorBar" value="0">Choose a Genre</option>
-                            {
-                                genres.map(
-                                    (genre) => {
-                                return <option className="genreBar" value={genre.id}>{genre.title}</option>   
-                                    }
-                                )
-                                }
-                                
-                        </select>
-                        </div>
             <fieldset>
                 <div className="form-group">
                     <label htmlFor="poster">Poster: </label>
@@ -210,7 +188,6 @@ export const MovieForm = () => {
                         synopsis: movie.synopsis,
                         user: parseInt(localStorage.getItem("auth_token")),
                         trailer: movie.trailer,
-                        genre: movie.genre,
                         poster: movie.poster,
                         actor: movie.actor
                         

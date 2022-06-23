@@ -58,3 +58,10 @@ export const fetchSingleMovieFromAPI = (async (movieId) => {
     ).then((data) => data.json())
 
 })
+
+export const fetchHorrorMoviesFromAPI = (async () => {
+    return await fetch(
+      `https://api.themoviedb.org/3/discover/movie/?with_genres=27&api_key=${process.env.REACT_APP_API_KEY}`
+    ).then((data) => data.json())
+
+})

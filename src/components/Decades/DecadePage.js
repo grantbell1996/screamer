@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { getSingleGenre } from "../Genres/GenreManager";
 import { fetchSingleMovieFromAPI, getMovies } from "../Movies/MovieManager";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import "./DecadePage.css"
 
 export const DecadePage = () => {
   const [movies, setMovies] = useState([]);
@@ -44,7 +45,7 @@ export const DecadePage = () => {
           () => {
               if (query !== "") {
                   let filteredNames = movies.filter(movie => {
-                      if (movie.name?.toLowerCase().includes(query.toLowerCase())) {
+                      if ((movie.name? movie.name : movie.title).toLowerCase().includes(query.toLowerCase())) {
                           return true
                       }
                       else {
@@ -61,13 +62,13 @@ export const DecadePage = () => {
 
   return (
     <>
-    <div className="searchBar"> 
-            <label htmlFor="inputMaker"> Search A Movie </label>
-            <input className="searchMovie" placeholder="..." onChange={event => setQuery(event.target.value)}></input>
+    <div className="search_bar"> 
+            <input className="searchMovie" placeholder="search a movie" onChange={event => setQuery(event.target.value)}></input>
             </div>
-      <h1>{year}'s</h1>
-      <div className="genreContainer">
-        {movies.map((movie) => (
+      <h1 className="decade_header"></h1>
+      <div className="genre_container">
+        <div className="genre_movie_tile">
+        {searchedMovies.map((movie) => (
           <Link
             className="movieBody"
             key={`${movie.id}`}
@@ -75,12 +76,13 @@ export const DecadePage = () => {
           >
           
             <img
+              className="movie_poster"
               width="200"
               src={movie.poster_path ? `https://image.tmdb.org/t/p/original/${movie.poster_path}` : `${movie.poster}`}
             /> 
-            <div className="movieName">{movie.title ? movie.title : movie.name}</div>
           </Link>
         ))}
+        </div>
       </div>
     </>
   );

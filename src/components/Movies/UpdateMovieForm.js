@@ -5,12 +5,14 @@ import { getActors } from "../Actors.js/ActorManager.js";
 import { getDirectors } from "../Directors/DirectorManagers.js";
 import { getGenres } from "../Genres/GenreManager.js";
 import { updateMovie, getSingleMovie, removeMovie } from "./MovieManager.js";
+import "./UpdateMovieForm.css"
 
 export const UpdateMovieForm = () => {
   const history = useHistory();
   const [directors, setDirectors] = useState([]);
   const [actors, setActors] = useState([]);
   const { movieId } = useParams();
+  const { year } = useParams();
 
   /*
         Since the input fields are bound to the values of
@@ -61,8 +63,9 @@ export const UpdateMovieForm = () => {
 
   return (
     <>
-      <form className="movieForm">
-        <h2 className="movieForm__title">Register New Movie</h2>
+      <form>
+        <h2 className="movie_form__title">Register New Movie</h2>
+        <div className="movie_form"> 
         <fieldset>
           <div className="form-group">
             <label htmlFor="name">Name: </label>
@@ -169,13 +172,9 @@ export const UpdateMovieForm = () => {
               autoFocus
               className="form-control"
               onChange={(evt) => {
-                const copy = { ...movie };
-                copy.director = parseInt(evt.target.value);
-                setMovie((evt) => {
                   const copy = { ...movie };
                   copy.synopsis = evt.target.value;
                   setMovie(copy);
-                });
               }}
             />
           </div>
@@ -239,6 +238,40 @@ export const UpdateMovieForm = () => {
             })}
           </select>
         </div>
+        <div>
+          {/* <input type="checkbox"
+          
+            required
+            autoFocus
+            className="actorBar"
+            onChange={(evt) => {
+              const copy = { ...movie };
+              copy.actor = parseInt(evt.target.value);
+              setMovie(copy);
+            }}
+          >
+            <label className="actorBar" value="0">
+              Choose Actors
+            </label>
+            {actors.map((actor) => {
+              return (
+                <input type="checkbox" 
+                required
+                autoFocus
+                className="actorBar"
+                onChange={(evt) => {
+                  const copy = { ...movie };
+                  copy.actor = parseInt(evt.target.value);
+                  setMovie(copy);
+                }}className="actorBar" value={movie.actor?.id}>
+                  {actor.first_name} {actor.last_name}
+                >
+              );
+            })}
+          </input> */}
+        </div>
+        </div>
+        
 
         <button
           type="submit"

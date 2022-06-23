@@ -8,6 +8,7 @@ import { MoviePage } from "./components/Movies/MoviePage"
 import { UpdateMovieForm } from "./components/Movies/UpdateMovieForm"
 import { ListForm } from "./components/MyLists/ListForm"
 import { MyLists } from "./components/MyLists/MyLists"
+import { ReviewForm } from "./components/Reviews/ReviewForm"
 
 export const ApplicationViews = () => {
     return <>
@@ -42,6 +43,10 @@ export const ApplicationViews = () => {
 
             <Route exact path="/:year(\d+)/:movieId(\d+)">
                 <MoviePage />
+            </Route>
+
+            <Route exact path="/:year(\d+)/:movieId(\d+)/review/:reviewId(\d+)">
+                <ReviewForm />
             </Route>
 
             <Route exact path="/:year(\d+)">

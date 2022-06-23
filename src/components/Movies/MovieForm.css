@@ -1,0 +1,15 @@
+.movie_form {
+    margin: 4%;
+    border: 1px solid; color: rgb(39, 39, 39);
+    padding: 2%;
+}
+
+.fieldset {
+    padding: 2%;
+}
+
+.movie_form__title {
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+}
