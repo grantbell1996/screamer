@@ -2,7 +2,7 @@
 
 
 export const getMovies = () => {
-    return fetch("http://localhost:8000/movies", {
+    return fetch(`${process.env.REACT_APP_API_URL}/movies`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
@@ -11,7 +11,7 @@ export const getMovies = () => {
 }
 
 export const getSingleMovie = (movieId) => {
-    return fetch(`http://localhost:8000/movies/${movieId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/movies/${movieId}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
@@ -20,7 +20,7 @@ export const getSingleMovie = (movieId) => {
 }
 
 export const createMovie = (movie) => {
-    return fetch("http://localhost:8000/movies", {
+    return fetch(`${process.env.REACT_APP_API_URL}/movies`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const createMovie = (movie) => {
 }
 
 export const updateMovie = (movie, movieId) => {
-    return fetch(`http://localhost:8000/movies/${movieId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/movies/${movieId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const updateMovie = (movie, movieId) => {
 }
 
 export const removeMovie = (movieId) => {
-    fetch(`http://localhost:8000/movies/${movieId}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/movies/${movieId}`, {
         method: "DELETE",
         headers: {
         "Content-Type": "application/json",

@@ -13,7 +13,7 @@ import "./MoviePage.css";
 
 export const MoviePage = () => {
   const [movie, setMovie] = useState({});
-  const {year} = useParams()
+  const { year } = useParams();
   const [user, setUser] = useState({});
   const [reviewObject, setReviewObject] = useState({});
   const [reviews, setReviews] = useState([]);
@@ -36,13 +36,10 @@ export const MoviePage = () => {
 
   useEffect(() => {
     fetchSingleMovieFromAPI(movieId).then((APIdata) => {
-      setMovie(APIdata);
-    });
-  }, [movieId]);
-
-  useEffect(() => {
-    getSingleMovie(movieId).then((data) => {
-      setMovie(data);
+      getSingleMovie(movieId).then((data) => {
+        setMovie(data);
+      });
+      setMovie(APIdata)
     });
   }, [movieId]);
 
@@ -152,26 +149,35 @@ export const MoviePage = () => {
               return (
                 <div>
                   "{reviewObject.body}" by {reviewObject.user?.username}
+                  <div className="review_buttons">
                   {reviewObject?.user.id === user.id ? (
-                    <button
-                      className="deleteReviewButton"
-                      onClick={() => deleteReview(reviewObject.id)}
-                    >
-                      delete review
-                    </button>
+
+                      <button
+                        className="deleteReviewButton"
+                        onClick={() => deleteReview(reviewObject.id)}
+                      >
+                        delete review
+                      </button>
+
                   ) : (
                     ""
                   )}
-                                    {reviewObject?.user.id === user.id ? (
-                    <button
-                      className="editReviewButton"
-                      onClick={ () => history.push(`/${year}/${movieId}/review/${reviewObject.id}`) }
-                    >
-                      edit review
-                    </button>
+                  {reviewObject?.user.id === user.id ? (
+                    
+                      <button
+                        className="editReviewButton"
+                        onClick={() =>
+                          history.push(
+                            `/${year}/${movieId}/review/${reviewObject.id}`
+                          )
+                        }
+                      >
+                        edit review
+                      </button>
                   ) : (
                     ""
                   )}
+                  </div>
                 </div>
               );
             }

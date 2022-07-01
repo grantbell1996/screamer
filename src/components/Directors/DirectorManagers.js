@@ -2,7 +2,7 @@
 
 
 export const getDirectors = () => {
-    return fetch("http://localhost:8000/directors", {
+    return fetch(`${process.env.REACT_APP_API_URL}/directors`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
@@ -11,7 +11,7 @@ export const getDirectors = () => {
 }
 
 export const getSingleDirector = (directorId) => {
-    return fetch(`http://localhost:8000/directors/${directorId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/directors/${directorId}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
@@ -20,7 +20,7 @@ export const getSingleDirector = (directorId) => {
 }
 
 export const createDirector = (director) => {
-    return fetch("http://localhost:8000/directors", {
+    return fetch(`${process.env.REACT_APP_API_URL}/directors`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const createDirector = (director) => {
 }
 
 export const updateDirector = (director, directorId) => {
-    return fetch(`http://localhost:8000/directors/${directorId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/directors/${directorId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const updateDirector = (director, directorId) => {
 }
 
 export const removeDirector = (directorId) => {
-    fetch(`http://localhost:8000/directors/${directorId}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/directors/${directorId}`, {
         method: "DELETE",
         headers: {
         "Content-Type": "application/json",

@@ -2,7 +2,7 @@
 
 
 export const getActors = () => {
-    return fetch("http://localhost:8000/actors", {
+    return fetch(`${process.env.REACT_APP_API_URL}/actors`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
@@ -11,7 +11,7 @@ export const getActors = () => {
 }
 
 export const getSingleActor = (actorId) => {
-    return fetch(`http://localhost:8000/actors/${actorId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/actors/${actorId}`, {
         headers:{
             "Authorization": `Token ${localStorage.getItem("auth_token")}`
         }
@@ -20,7 +20,7 @@ export const getSingleActor = (actorId) => {
 }
 
 export const createActor = (actor) => {
-    return fetch("http://localhost:8000/actors", {
+    return fetch(`${process.env.REACT_APP_API_URL}/actors`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const createActor = (actor) => {
 }
 
 export const updateActor = (actor, actorId) => {
-    return fetch(`http://localhost:8000/actors/${actorId}`, {
+    return fetch(`${process.env.REACT_APP_API_URL}/actors/${actorId}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ export const updateActor = (actor, actorId) => {
 }
 
 export const removeActor = (actorId) => {
-    fetch(`http://localhost:8000/actors/${actorId}`, {
+    fetch(`${process.env.REACT_APP_API_URL}/actors/${actorId}`, {
         method: "DELETE",
         headers: {
         "Content-Type": "application/json",

@@ -88,7 +88,7 @@ export const MovieForm = () => {
                             {
                                 directors.map(
                                     (director) => {
-                                return <option className="directorBar" value={director.id}>{director.first_name} {director.last_name}</option>   
+                                return <option key={director.id} className="directorBar" value={director.id}>{director.first_name} {director.last_name}</option>   
                                     }
                                 )
                                 }
@@ -164,7 +164,7 @@ export const MovieForm = () => {
                             {
                                 actors.map(
                                     (actor) => {
-                                return <option className="actorBar" value={actor.id}>{actor.first_name} {actor.last_name}</option>   
+                                return <option key={actor.id} className="actorBar" value={actor.id}>{actor.first_name} {actor.last_name}</option>   
                                     }
                                 )
                                 }
@@ -197,7 +197,7 @@ export const MovieForm = () => {
                     createMovie(newMovie, )
                         .then(() => history.push("/home"))
                 }}
-                className="btn btn-primary">Create</button>
+                className="submit">Create</button>
         </form>
     </>
     )

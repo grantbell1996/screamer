@@ -43,10 +43,45 @@
 }
 
 .review_cont {
+    padding: 1%;
+    border: 1px solid black;
     margin: 3%
 }
 
 .movie_poster_cont {
     border: 1px solid black;
     box-shadow: 0 2px 8px gray;
+}
+
+.editReviewButton {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    padding: 5px;
+    margin-left: 3%;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.editReviewButton:hover {
+    transform: scale(1.0);
+    box-shadow: 0 3px 10px gray;
+}
+
+.deleteReviewButton {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    padding: 5px;
+    margin-left: 3%;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.deleteReviewButton:hover {
+    transform: scale(1.0);
+    box-shadow: 0 3px 10px gray;
+}
+
+.review_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 1%;
 }

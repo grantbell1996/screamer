@@ -30,7 +30,7 @@ export const NavBar = () => {
       </div> */}
 
       <div className="navbar__item_side active">
-        <Link className="listMovie" Link to="/new_movie">
+        <Link className="listMovie" to="/new_movie">
           <img className="navbarLogo" src={uploadLogo} />
         </Link>
       </div>
@@ -39,8 +39,8 @@ export const NavBar = () => {
           <Link
             onClick={() => {
               localStorage.removeItem("auth_token");
-              history.push({ pathname: "/login" });
             }}
+            to="/login"
           >
             <img className="logoutLogo" src={logoutLogo} />
           </Link>

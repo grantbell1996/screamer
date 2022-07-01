@@ -4,12 +4,34 @@
     padding: 2%;
 }
 
-.fieldset {
-    padding: 2%;
+.form-group {
+    padding: 1%;
+    margin: 1%;
 }
 
 .movie_form__title {
     display: flex;
     justify-content: center;
     padding-top: 0;
+}
+
+.directorBar {
+    margin: 1.5%;
+}
+
+.actorBar {
+    margin: 1.5%;
+}
+
+.submit {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    padding: 5px;
+    margin-left: 3%;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.submit:hover {
+    transform: scale(1.0);
+    box-shadow: 0 3px 10px gray;
 }
