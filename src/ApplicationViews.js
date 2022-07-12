@@ -2,7 +2,7 @@ import React from "react"
 import { Route, useLocation } from "react-router-dom"
 import { DecadeGrid } from "./components/Decades/DecadeGrid"
 import { DecadePage } from "./components/Decades/DecadePage"
-import { HomePage } from "./components/HomePage"
+import { OurPicksPage } from "./components/OurPicksPage"
 import { MovieForm } from "./components/Movies/MovieForm"
 import { MoviePage } from "./components/Movies/MoviePage"
 import { UpdateMovieForm } from "./components/Movies/UpdateMovieForm"
@@ -14,11 +14,15 @@ export const ApplicationViews = () => {
     return <>
 
             <Route exact path="/home">
-                <HomePage />
+                <DecadeGrid />
             </Route>
 
             <Route exact path="/">
-                <HomePage />
+                <DecadeGrid />
+            </Route>
+
+            <Route exact path="/ourpicks">
+                <OurPicksPage />
             </Route>
 
             <Route exact path="/decades">

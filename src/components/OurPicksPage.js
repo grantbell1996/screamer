@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getSingleActor } from "./Actors.js/ActorManager";
 import { getSingleDirector } from "./Directors/DirectorManagers";
-import "./HomePage.css";
+import "./OurPicksPage.css";
 import editorHeader from "../images/editorheader.png"
 import { getMovies, getSingleMovie } from "./Movies/MovieManager";
 
-export const HomePage = () => {
+export const OurPicksPage = () => {
   const [movie, setMovie] = useState({});
   const [actor, setActor] = useState({});
   const [director, setDirector] = useState({});
