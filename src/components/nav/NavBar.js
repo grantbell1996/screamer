@@ -3,7 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import "./NavBar.css";
 import navbarHomeLogo from "../../images/screamer_navbar_logo.png";
-import byDecadeLogo from "../../images/by_decade_logo.png";
+import OurPicksLogo from "../../images/our_picks_logo.png";
 import uploadLogo from "../../images/upload_logo.png"
 import logoutLogo from "../../images/logout_logo.png";
 
@@ -20,8 +20,8 @@ export const NavBar = () => {
       </div>
 
       <div className="navbar__item_side active">
-        <Link to="/decades">
-          <img className="navbarLogo" src={byDecadeLogo} />
+        <Link to="/ourpicks">
+          <img className="picksNavbarLogo" src={OurPicksLogo} />
         </Link>
       </div>
 
