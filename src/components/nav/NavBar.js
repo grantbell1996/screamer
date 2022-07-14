@@ -6,6 +6,7 @@ import navbarHomeLogo from "../../images/screamer_navbar_logo.png";
 import OurPicksLogo from "../../images/our_picks_logo.png";
 import uploadLogo from "../../images/upload_logo.png"
 import logoutLogo from "../../images/logout_logo.png";
+import myListsLogo from "../../images/my_lists_header.png";
 
 export const NavBar = () => {
   const location = useLocation();
@@ -25,9 +26,11 @@ export const NavBar = () => {
         </Link>
       </div>
 
-      {/* <div className="navbar__item active"> 
-        <Link to="/my_lists">My Lists</Link>
-      </div> */}
+      <div className="navbar__item active"> 
+        <Link to="/my_lists">
+          <img className="navbarLogo" src={myListsLogo} />
+        </Link>
+      </div>
 
       <div className="navbar__item_side active">
         <Link className="listMovie" to="/new_movie">
